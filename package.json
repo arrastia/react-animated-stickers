@@ -1,0 +1,59 @@
+{
+  "name": "react-animated-stickers",
+  "author": "Arrastia",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.30.0",
+    "husky": "^8.0.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "size-limit": "^7.0.8",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
+    "typescript": "^3.9.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "module": "dist/react-animated-stickers.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/react-animated-stickers.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/react-animated-stickers.esm.js",
+      "limit": "10 KB"
+    }
+  ]
+}
