@@ -6,6 +6,7 @@ export interface Player {
   clamped: any;
   height: number;
   options: PlayerOption;
+  paused: boolean;
   url: string;
   width: number;
 }

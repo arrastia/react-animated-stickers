@@ -4,6 +4,8 @@ export type LottieAPI = any;
 
 export type LottieEvents = any;
 
+export type LottieEventListener = (reqId: any, eventName: string, callback?: () => void) => void;
+
 export interface Lottie {
   addEventListener: (reqId: any, eventName: any, callback: any) => void;
   Api: LottieAPI;
