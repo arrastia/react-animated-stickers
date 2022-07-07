@@ -3,6 +3,7 @@ export function requestFrame(reqId: any, frameNo: any, players: any[]) {
   const data = rlottieFrames.get(rlPlayer.url);
 
   const frame = data.frames[frameNo];
+
   if (frame) {
     onFrame(reqId, frameNo, frame);
   } else if (isSafari) {
