@@ -1,0 +1,1 @@
+export { isWASMSupported } from './isWASMSupported';

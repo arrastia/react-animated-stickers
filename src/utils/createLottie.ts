@@ -2,13 +2,10 @@ import { WORKERS_LIMIT } from '../configuration/constants';
 
 import { addEventListener, removeEventListener } from './EventsUtils';
 import { clear } from './LottieUtils/clear';
-import { clearPlayers } from './LottieUtils/clearPlayers';
-import { FrameQueue } from './FrameUtils/FrameQueue';
-import { isLottieSupported } from './LottieUtils/isLottieSupported';
-import { isPaused } from './LottieUtils/isPaused';
-import { isSafari } from './LottieUtils/isSafari';
-import { onMediaControlAction } from './LottieUtils/onMediaControlAction';
-import { QueryableWorker } from './WorkersUtils/QueryableWorker';
+import { clearPlayers, isPaused, onMediaControlAction } from './PlayerUtils';
+import { FrameQueue } from './FrameUtils';
+import { isLottieSupported, isSafari } from './LottieUtils';
+import { QueryableWorker } from './WorkersUtils';
 
 import type { Lottie } from '../types/Lottie';
 
