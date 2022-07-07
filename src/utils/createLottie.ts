@@ -13,13 +13,19 @@ import { QueryableWorker } from './WorkersUtils/QueryableWorker';
 import type { Lottie } from '../types/Lottie';
 
 export const createLottie = () => {
+  let checkViewportDate: any = false;
+  let curWorkerNum = 0;
+  let deviceRatio = window.devicePixelRatio || 1;
+  let initCallbacks: any = [];
+  let lastRenderDate: any = false;
+
+  let reqId = 0;
+  let segmentId = 0;
+
   let lottie = {} as Lottie;
 
   let apiInited = false;
   let apiInitStarted = false;
-  let curWorkerNum = 0;
-  let deviceRatio = window.devicePixelRatio || 1;
-  let initCallbacks: any = [];
   let lottieWorkers: any = [];
 
   lottie.Api = {};
@@ -27,11 +33,7 @@ export const createLottie = () => {
   lottie.frames = new Map();
   lottie.players = Object.create(null);
 
-  let segmentId = 0;
-  let reqId = 0;
   let mainLoopTO: any = false;
-  let checkViewportDate: any = false;
-  let lastRenderDate: any = false;
 
   let isRAF = isSafari();
 
@@ -199,8 +201,6 @@ export const createLottie = () => {
   }
 
   function mainLoop() {
-    let delta, rendered;
-
     const now = +Date.now();
     const checkViewport = !checkViewportDate || now - checkViewportDate > 1000;
 
@@ -208,14 +208,12 @@ export const createLottie = () => {
       const rlPlayer: any = lottie.players[reqId];
 
       if (rlPlayer && rlPlayer.frameCount) {
-        delta = now - rlPlayer.frameThen;
+        const delta = now - rlPlayer.frameThen;
 
         if (delta > rlPlayer.frameInterval) {
-          rendered = render(rlPlayer, checkViewport);
+          const rendered = render(rlPlayer, checkViewport);
 
-          if (rendered) {
-            lastRenderDate = now;
-          }
+          if (rendered) lastRenderDate = now;
         }
       }
     }
@@ -271,21 +269,17 @@ export const createLottie = () => {
       let { isInViewport, inViewportFunc } = rlPlayer;
 
       if (isInViewport === undefined || checkViewport) {
-        const rect = rlPlayer.el.getBoundingClientRect();
+        const rect = rlPlayer.el.getBoundingClientRect() as DOMRect;
 
         if (inViewportFunc) {
           isInViewport = inViewportFunc(rlPlayer.fileId, rect);
         } else {
-          if (
-            rect.bottom < 0 ||
-            rect.right < 0 ||
-            rect.top > (window.innerHeight || document.documentElement.clientHeight) ||
-            rect.left > (window.innerWidth || document.documentElement.clientWidth)
-          ) {
-            isInViewport = false;
-          } else {
-            isInViewport = true;
-          }
+          const { bottom, left, right, top } = rect;
+          const { clientHeight, clientWidth } = document.documentElement;
+          const { innerHeight, innerWidth } = window;
+          const isNotInViewPort = bottom < 0 || right < 0 || top > (innerHeight || clientHeight) || left > (innerWidth || clientWidth);
+
+          isInViewport = !isNotInViewPort;
         }
 
         rlPlayer.isInViewport = isInViewport;
