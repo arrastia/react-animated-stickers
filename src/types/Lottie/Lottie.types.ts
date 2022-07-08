@@ -27,6 +27,6 @@ export interface Lottie {
   players: Player[];
   playSegments: (reqId: any, segments: any, forceFlag: any) => void;
   preload: (fileId: any, stringData: any) => void;
-  removeEventListener: (reqId: any, eventName: any) => void;
+  removeEventListener: (reqId: any, eventName: any, callback?: () => void) => void;
   WORKERS_LIMIT: number;
 }
