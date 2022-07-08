@@ -508,10 +508,13 @@ export const createLottie = () => {
 
   lottie.initApi = () => initApi();
   lottie.init = (el: any, options: any): boolean => {
-    if (!isLottieSupported()) return false;
-
+    if (!lottie.isSupported) {
+      return false;
+    }
     initApi(() => {
-      if (el && options) initPlayer(el, options);
+      if (el && options) {
+        initPlayer(el, options);
+      }
     });
 
     return true;
