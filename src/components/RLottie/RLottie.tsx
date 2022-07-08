@@ -1,5 +1,6 @@
 import React, { forwardRef, CSSProperties, Ref, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { buildRLottieObject } from '../../utils/buildRLottieObject';
+// import { buildRLottieObject } from '../../utils/buildRLottieObject';
+import { createLottie as buildRLottieObject } from '../../utils/createLottie';
 import { Lottie } from './RLottie.styles';
 
 export interface RLottieEventListeners {
@@ -44,6 +45,8 @@ export const RLottie = forwardRef(
     { ariaLabel, ariaRole, eventListeners, height, onClick, onMouseEnter, onMouseOut, options, style, title, width }: RLottieProps,
     ref: Ref<RLottieHandleProps>
   ) => {
+    const lottie = buildRLottieObject();
+
     const [animation, setAnimation] = useState<any>(null);
 
     const containerRef = useRef<HTMLPictureElement>(null);
@@ -61,9 +64,9 @@ export const RLottie = forwardRef(
 
       let _options: any = { ...defaultOptions, ...options };
 
-      buildRLottieObject().loadAnimation(_options, (anim: any) => {
+      lottie.loadAnimation(_options, (anim: any) => {
         setAnimation(anim);
-        if (buildRLottieObject().hasFirstFrame(anim)) {
+        if (lottie.hasFirstFrame(anim)) {
           if (!eventListeners) return;
 
           eventListeners.forEach(({ callback, eventName }) => {
@@ -91,23 +94,23 @@ export const RLottie = forwardRef(
     const destroy = () => {
       if (!animation) return;
 
-      buildRLottieObject().destroy(animation);
+      lottie.destroy(animation);
     };
 
     const pause = () => {
-      if (!buildRLottieObject().isPaused(animation)) {
-        buildRLottieObject().pause(animation);
+      if (!lottie.isPaused(animation)) {
+        lottie.pause(animation);
         return true;
       }
 
       return false;
     };
 
-    const play = () => buildRLottieObject().play(animation);
+    const play = () => lottie.play(animation);
 
     const playSegments = (segments: any, forceFlag: any) => {
       console.log('plause :>> ');
-      buildRLottieObject().playSegments(animation, segments, forceFlag);
+      lottie.playSegments(animation, segments, forceFlag);
     };
 
     const unregisterEvents = (eventListeners: RLottieEventListeners[]) => {
@@ -115,7 +118,7 @@ export const RLottie = forwardRef(
       if (!eventListeners) return;
 
       eventListeners.forEach(({ eventName, callback }) => {
-        buildRLottieObject().removeEventListener(animation, eventName, callback);
+        lottie.removeEventListener(animation, eventName, callback);
       });
     };
 
@@ -125,7 +128,7 @@ export const RLottie = forwardRef(
       if (!eventListeners) return;
 
       eventListeners.forEach(({ eventName, callback }) => {
-        buildRLottieObject().addEventListener(animation, eventName, callback);
+        lottie.addEventListener(animation, eventName, callback);
       });
     };
 

@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
-import { buildRLottieObject } from '../../utils/buildRLottieObject';
+// import { buildRLottieObject } from '../../utils/buildRLottieObject';
+import { createLottie as buildRLottieObject } from '../../utils/createLottie';
 
 
 import type { LottieEvents, LottieProps, LottieRef } from './@types/Lottie.types';
