@@ -38,10 +38,13 @@
     "pako": "^2.0.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "rollup-plugin-copy-assets": "^2.0.3",
+    "rollup-plugin-web-worker-loader": "^1.6.1",
     "size-limit": "^7.0.8",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
-    "typescript": "^3.9.10"
+    "typescript": "^3.9.10",
+    "workerize-loader": "^2.0.2"
   },
   "husky": {
     "hooks": {
