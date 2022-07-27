@@ -1,11 +1,11 @@
 import './App.css';
 
-import { Monkey, Caption } from '../../';
+import { Monkey } from '../../';
 
 export function App() {
   return (
     <div className="App">
-      <Caption />
+      <Monkey />
     </div>
   );
 }

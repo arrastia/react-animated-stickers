@@ -164,11 +164,12 @@ class Caption extends React.Component {
 
     return (
       <AuthCaptionTelegramLogo
-        onMouseDown={() => this.onClientUpdateMonkeyPeek({ peek: true })}
-        onMouseUp={() => this.onClientUpdateMonkeyPeek({ peek: false })}>
+      // onMouseDown={() => this.onClientUpdateMonkeyPeek({ peek: true })}
+      // onMouseUp={() => this.onClientUpdateMonkeyPeek({ peek: false })}
+      >
         {data && (
           <React.Suspense fallback={null}>
-            <RLottie ref={this.lottieRef} options={{ width: 160, height: 160, autoplay: true, loop: true, fileId, stringData: data }} />
+            <RLottie ref={this.lottieRef} options={{ width: 160, height: 160, autoplay: true, loop: false, fileId, stringData: data }} />
             <RLottie
               options={{ width: 160, height: 160, autoplay: false, loop: false, fileId: 'tracking', stringData: trackingData, queueLength: 1 }}
               style={{ display: 'none' }}
