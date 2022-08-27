@@ -147,3 +147,5 @@ export const RLottie = forwardRef(
     );
   }
 );
+
+RLottie.displayName = 'RLottie';
