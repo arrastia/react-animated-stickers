@@ -476,7 +476,7 @@ export const createLottie = () => {
   lottie.loadAnimation = (options: any, callback: any) => loadAnimation(options, callback);
 
   lottie.pause = (reqId: any) => onMediaControlAction(lottie.players[reqId], 'pause');
-  lottie.pause = (reqId: any) => onMediaControlAction(lottie.players[reqId], 'play');
+  lottie.play = (reqId: any) => onMediaControlAction(lottie.players[reqId], 'play');
   lottie.preload = (fileId: any, stringData: any) => initPlayer(null, { fileId, stringData });
   lottie.playSegments = function(reqId: any, segments: any, forceFlag: any) {
     const rlPlayer = lottie.players[reqId];
